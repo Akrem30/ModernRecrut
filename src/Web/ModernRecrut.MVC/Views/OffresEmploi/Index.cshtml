@@ -1,0 +1,90 @@
+﻿@model IEnumerable<ModernRecrut.MVC.Models.OffreEmploi>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Liste des offres d'emploi </h1>
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <a class="btn btn-success btn-sm" asp-action="Create">Ajouter une nouvelle offre d'emploi </a>
+    </p>
+}
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Rechercher par poste:
+            <input type="text" name="saisieRecherche" value="@ViewData["FiltreActuel"]" />
+            <input type="submit" value="Filtrer" class="btn btn-primary" /> |
+            <a asp-action="Index">Retour à la liste complète</a>
+        </p>
+    </div>
+</form>
+
+@using (Html.BeginForm("Index", "Favoris", FormMethod.Get))
+{
+    <button class="btn btn-primary btn-sm">Mes favoris</button>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Poste)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateAffichage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateFin)
+            </th>            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Poste)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateAffichage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateFin)
+                </td>               
+                <td>
+                    <a asp-action="Details" class="btn btn-secondary btn-sm" asp-route-id="@item.Id">Détails</a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a asp-action="Edit" class="btn btn-warning btn-sm" asp-route-id="@item.Id">Modifier</a> 
+                        <a asp-action="Delete" class="btn btn-danger btn-sm" asp-route-id="@item.Id">Supprimer</a>
+                    }
+                    @using (Html.BeginForm("Create", "Favoris", FormMethod.Post, new { id = "myform", style = "display: inline;" }))
+                    {
+                        @Html.Hidden("Id", item.Id)
+                        @Html.Hidden("Poste", item.Poste)
+                        @Html.Hidden("Description", item.Description)
+                        <button class="btn btn-info btn-sm" type="submit">Ajouter aux favoris</button>
+                    }
+                    @using (Html.BeginForm("Create", "Postulations", FormMethod.Get, new { id = "myform", style = "display: inline;" }))
+                    {
+                        @Html.Hidden("Id", item.Id)
+                       // @Html.Hidden("Poste", item.Poste)
+                       
+                        <button class="btn btn-info btn-sm" type="submit">Postuler</button>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

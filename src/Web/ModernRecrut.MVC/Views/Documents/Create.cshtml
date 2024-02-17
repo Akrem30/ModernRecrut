@@ -1,0 +1,45 @@
+﻿@model ModernRecrut.MVC.Models.DTO.RequeteFichier
+@using ModernRecrut.MVC.Models
+@{
+    ViewData["Title"] = "Ajouter un document";
+}
+
+
+<div class="row">
+    <div class="d-flex justify-content-center">
+        <form asp-action="Create" enctype="multipart/form-data" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <h4>Téléchargez votre document ici</h4>
+                    <input class="form-control" type="file"  asp-for="FileDetails" />
+                    <small class="text-danger">*(format pdf ou word , taille maximale : 2 Mo)</small>
+                    <span asp-validation-for="FileDetails" class="text-danger"></span>
+                </div>
+            </div>
+            <br />
+            <div class="col-md-10">
+                <label asp-for="TypeDocument" class="form-label"></label>
+                <select asp-for="TypeDocument" asp-items="Html.GetEnumSelectList<ModernRecrut.MVC.Models.Type>()"></select>
+                <span asp-validation-for="TypeDocument" class="text-danger"></span>
+            </div>
+            
+            <br />
+            <div class="form-group mb-3">
+                <input type="submit" value="Télécharger" class="btn btn-primary" />
+            </div>
+
+            <a asp-action="Index">Retourner à mes documents</a>
+        </form>
+        
+           
+        
+    </div>
+   
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

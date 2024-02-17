@@ -1,0 +1,51 @@
+﻿@model ModernRecrut.MVC.Models.CodeStatusViewModel
+
+@{
+    ViewData["Title"] = "Code Status";
+}
+
+<style>
+    body {
+        background-color: lavender;
+    }
+    .card-img-top {
+        max-width: 100%;
+        max-height: 100%;       
+        margin: 0 auto;
+    }
+
+    .mainMessage {
+        font-size:1.5rem;
+    }
+
+    .containerError {
+        display: flex;
+        flex-direction:column;
+        justify-content:space-between;
+    }
+
+    .requeteId {
+        margin-top: 1rem;
+    }
+</style>
+
+
+
+<div class="containerError">
+    <div>
+        <p class="mainMessage">Erreur : @Model.CodeStatus &#128532; &nbsp;</p>
+    </div>
+    <div>
+        <p class="mainMessage">@Model.MessageErreur</p>
+    </div>
+    <div>
+        <img class="card-img-top" src="/images/chatons.jpg" data-src="holder.js/100px225?theme=thumb&bg=55595c&fg=eceeef&text=Thumbnail" alt="Miau miau miau">
+    </div>
+    <div class="requeteId">
+        @if (Model.MontrerIdRequete)
+        {
+            <p>Si vous souhaitez connaître l'identifiant de la requête :  @Model.IdRequete</p>
+        }
+    </div>
+</div>
+

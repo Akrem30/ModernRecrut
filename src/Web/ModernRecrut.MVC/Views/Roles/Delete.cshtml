@@ -1,0 +1,31 @@
+﻿@model ModernRecrut.MVC.Models.RoleViewModel
+
+@{
+    ViewData["Title"] = "Suppression";
+}
+
+<h1>Suppression</h1>
+
+<div>
+    <hr />
+    <h5 class="text-danger">@Html.ValidationMessage("roleAdmin")</h5>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RoleId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RoleId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NomRole)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.NomRole)
+        </dd>
+    </dl>
+</div>
+<form asp-action="Delete">
+    <input type="hidden" asp-for="RoleId" />
+    <input type="submit" value="Supprimer" class="btn btn-danger" /> |
+    <a asp-action="Index">Retourner à la liste</a>
+</form>

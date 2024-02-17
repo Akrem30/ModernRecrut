@@ -1,0 +1,47 @@
+﻿﻿
+@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+
+@{
+    ViewData["Title"] = "Gestion des rôles";
+}
+
+<h1>Gestion des rôles</h1>
+
+<p>
+    <a href="@Url.Action("Index", "RolesUtilisateurs")">Gestion des rôles des utilisateurs</a>
+</p>
+<h5 class="text-danger">@Html.ValidationMessage("nomRole")</h5>
+<form method="post" asp-action="Create" asp-controller="Roles">
+    <div class="input-group">
+        <input name="nomRole" class="form-control w-25">
+        <span class="input-group-btn">
+            <button class="btn btn-info">Ajouter un nouveau rôle</button>
+        </span>
+    </div>
+</form>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                Rôle
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.ActionLink("Modifier", "Edit", new {  id=item.Id  }) |
+                    @Html.ActionLink("Consulter", "Details", new {  id=item.Id  }) |
+                    @Html.ActionLink("Supprimer", "Delete", new {  id=item.Id  })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

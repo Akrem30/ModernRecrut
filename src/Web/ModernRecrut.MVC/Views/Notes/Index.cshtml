@@ -1,0 +1,56 @@
+﻿@model IEnumerable<ModernRecrut.MVC.Models.Postulation>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Liste des postulations </h1>
+@using (Html.BeginForm("MesNotes", "Notes", FormMethod.Get))
+{
+    <button class="btn btn-primary btn-sm">Mes notes</button>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OffreEmploi.Poste)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PretentionSalariale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Candidat.Nom) 
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateDisponibilite)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OffreEmploi.Poste)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PretentionSalariale)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Candidat.Prenom) @Html.DisplayFor(modelItem => item.Candidat.Nom)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateDisponibilite)
+                </td>
+                <td>
+                    <a asp-action="Create" class="btn btn-secondary btn-sm" asp-route-id="@item.Id">Ajouter une note</a>
+                    <a asp-action="Details" asp-controller="Postulations" class="btn btn-secondary btn-sm" asp-route-id="@item.Id">Détails de la postulation</a>
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+</table>

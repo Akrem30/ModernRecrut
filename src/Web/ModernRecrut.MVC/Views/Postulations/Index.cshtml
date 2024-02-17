@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ModernRecrut.MVC.Models.Postulation>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Liste de mes postulations </h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OffreEmploi.Poste)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PretentionSalariale)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Candidat.NomComplet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateDisponibilite)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OffreEmploi.Poste)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PretentionSalariale)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Candidat.NomComplet)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateDisponibilite)
+                </td>
+                <td>
+                    <a asp-action="Details" class="btn btn-secondary btn-sm" asp-route-id="@item.Id">Détails</a> 
+                    <a asp-action="Edit" class="btn btn-warning btn-sm" asp-route-id="@item.Id">Modifier</a>
+                    <a asp-action="Delete" class="btn btn-danger btn-sm" asp-route-id="@item.Id">Supprimer</a>              
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

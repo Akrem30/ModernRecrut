@@ -1,0 +1,82 @@
+﻿@model ModernRecrut.MVC.Models.Postulation
+@using Microsoft.AspNetCore.Identity
+@using ModernRecrut.MVC.Areas.Identity.Data
+@inject SignInManager<Utilisateur> SignInManager
+@inject UserManager<Utilisateur> UserManager
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Détails de la postulation</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Candidat.NomComplet)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Candidat.NomComplet)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OffreEmploi.Poste)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OffreEmploi.Poste)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PretentionSalariale)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PretentionSalariale)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DateDisponibilite)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DateDisponibilite)
+        </dd>
+    </dl>
+</div>
+@if (SignInManager.IsSignedIn(User) &&  (User.IsInRole("Admin") || User.IsInRole("RH")) )
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Note
+                </th>
+                <th>
+                    Nom Emétteur
+                </th>
+
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Notes)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NomEmetteur)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else{
+<div>
+    @Html.ActionLink("Modifier", "Edit", new {  id = Model.Id  }) |
+    <a asp-action="Index">Retourner à la liste</a>
+</div>
+}

@@ -1,0 +1,50 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 60px;
+}
+/*.form-control{
+
+
+
+
+
+
+
+    width:auto;
+}*/
+h4{
+
+    width:200%;
+}
+
+h2{
+    font-family:"Script MT";
+}
+#logo{
+    height:60px;
+    width:100px;
+}
+.control-label{
+    font-family:'Times New Roman', Times, serif;
+
+}
+ 
+.form-control{
+    border-radius:18px;
+}
+.table {
+    color: #808080;
+}

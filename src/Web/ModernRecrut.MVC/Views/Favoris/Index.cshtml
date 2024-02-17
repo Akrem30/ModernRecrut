@@ -1,0 +1,49 @@
+﻿@model ModernRecrut.MVC.Models.Favoris
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Liste des favoris</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Poste
+            </th>
+            <th>
+                Date d'affichage
+            </th>
+            <th>
+                Date de fin
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Contenu)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Poste)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateAffichage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DateFin)
+                </td>
+                <td>
+                    <a asp-action="Details" class="btn btn-secondary btn-sm" asp-route-id="@item.Id">Détails</a>
+                    @using (Html.BeginForm("Delete", "Favoris", FormMethod.Post, new { id = "myform", style = "display: inline;" }))
+                    {
+                        @Html.Hidden("Id", item.Id)
+                        <button class="btn btn-danger btn-sm" type="submit">Supprimer de mes favoris</button>
+                    }
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

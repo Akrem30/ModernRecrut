@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ModernRecrut.MVC.Models.UsersRolesViewModel>
+@{
+    ViewData["Title"] = "Gestion des rôles des utilisateurs";
+}
+
+<h1>Gestion des rôles des utilisateurs</h1>
+
+<p>
+    <a href="@Url.Action("Index", "Roles")">Gestion des rôles</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>Courriel / Nom de l'utilisateur</th>
+            <th>Rôles</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            <tr>
+                <td>@user.Prenom</td>
+                <td>@user.Nom</td>
+                <td>@user.Courriel</td>
+                <td>@string.Join(" , ", user.Roles.ToList())</td>
+                <td>
+                    <a class="btn btn-primary" asp-controller="RolesUtilisateurs" asp-action="Assigner" asp-route-userId="@user.UserId">Gérer les rôles</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

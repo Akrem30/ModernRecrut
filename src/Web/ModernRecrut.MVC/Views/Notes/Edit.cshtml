@@ -1,0 +1,44 @@
+﻿@model ModernRecrut.MVC.Models.Note
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Modification de la note</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <div style="font-weight:bold;font-size:large">@Html.DisplayNameFor(model => model.Id) : @Html.DisplayFor(model => model.Id)</div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+				<textarea asp-for="Description" class="form-control" > </textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            
+            <input asp-for="NomEmetteur" class="form-control" hidden />
+            <input asp-for="PostulationID" class="form-control" hidden />
+            
+            </br>
+            <div class="form-group">
+                <input type="submit" value="Modifier" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Retourner à la liste</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
