@@ -1,5 +1,5 @@
 # ModernRecrut
-ModernRecrut est une application web qui permet aux entreprises de publier des offres d'emploi et de gérer les candidatures. L'application est développée en utilisant une architecture de microservices, qui offre une grande flexibilité et une évolutivité accrue.
+ModernRecrut est une petite application web (réalisée dans le cadre de ma formation en développement d'applications sécuritaires) qui permet aux entreprises de publier des offres d'emploi et de gérer les candidatures. L'application est développée en utilisant une architecture de microservices, qui offre une grande flexibilité et une évolutivité accrue.
 
 ## Microservices
 Les microservices de l'application sont les suivants :
